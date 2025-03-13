@@ -8,11 +8,7 @@ from openai import OpenAI
 import markdown 
 
 
-# programa para analizar el resultado de una web
-
-
-
-
+# programa PYTHON 3.12.0 para analizar el resultado de una web
 
 load_dotenv(override=True)
 # necesitamos un archivo .env con la siguiente línea, el Api Key creado desde tu sesión de https://platform.openai.com/docs/overview
