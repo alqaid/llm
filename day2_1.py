@@ -15,6 +15,8 @@ import markdown
 
 
 load_dotenv(override=True)
+# necesitamos un archivo .env con la siguiente línea, el Api Key creado desde tu sesión de https://platform.openai.com/docs/overview
+# OPENAI_API_KEY=xxxxxxxxx
 api_key = os.getenv('OPENAI_API_KEY')
 
 if not api_key:
