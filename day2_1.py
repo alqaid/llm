@@ -1,19 +1,3 @@
-#
-# crear entorno
-#   >python -m venv miEntorno 
-#   >pip install -r requirements.txt
-
-
-# activar entorno desde power shell  o desde el terminal
-#   >miEntorno\Scripts\activate
-#   >cd weekk1 
-#   >py day1.ph          
-
-
-# programa para analizar el resultado de una web
-
-
-
 import os
 import webbrowser
 import requests
@@ -21,7 +5,14 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from IPython.display import Markdown, display
 from openai import OpenAI
-import markdown
+import markdown 
+
+
+# programa para analizar el resultado de una web
+
+
+
+
 
 load_dotenv(override=True)
 api_key = os.getenv('OPENAI_API_KEY')
@@ -37,15 +28,6 @@ else:
 
 openai = OpenAI()
 
-# Constants
-#
-#OLLAMA_API = "http://192.168.1.56:11434/api/chat"
-##OLLAMA_API = "http://127.0.0.1:11434/api/chat"
-#HEADERS = {"Content-Type": "application/json"}
-#MODEL = "llama3.2"
-#
-# Create a messages list using the same format that we used for OpenAI
-
 #
 #
 system_prompt = "You are an assistant that analyzes the contents of a website \
@@ -60,37 +42,12 @@ def user_prompt_for(website):
     user_prompt += "I need it in spanish language."
     user_prompt += website.text
     return user_prompt
-#
-#print(user_prompt_for(ed))
-
-
-#messages = [
-#    {"role": "user", "content": "¿que nombre te dije que era el mejor del mundo?"}
-#]
-#messages = [
-#    {"role": "system", "content": "You are a snarky assistant"},
-#    {"role": "user", "content": "What is 2 + 2?"}
-#]
 
 def messages_for(website):
     return [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt_for(website)}
     ]
-#
-#messages_for(ed)
-
-
-
-#
-#
-#payload = {
-#        "model": MODEL,
-#        "messages": messages,
-#        "stream": False
-#    }
-#
-
 
 # Some websites need you to use proper headers when fetching them:
 headers = {
@@ -126,7 +83,6 @@ def summarize(url):
         messages = messages_for(website)
     )
     return response.choices[0].message.content
-#    return "<p>prueba</p>"
 
 def display_summary(url):
     summary = summarize(url)
@@ -137,9 +93,4 @@ def display_summary(url):
         f.write(html)
     webbrowser.open("output.html")
 
-#display_summary("https://edwarddonner.com")
-#display_summary("https://www.rtve.es/noticias/")
 display_summary("https://www.alcaide.info/")
-#response = requests.post(OLLAMA_API, json=payload, headers=HEADERS)
-#print(response.json()['message']['content'])
-#
